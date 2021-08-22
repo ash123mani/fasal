@@ -1,0 +1,27 @@
+.header {
+  padding: 10px 40px;
+  border-bottom: 2px solid #ececec;
+
+  &__logo {
+    width: 120px;
+
+    & a {
+      height: 32px;
+      width: 32px;
+      display: flex;
+      align-items: center;
+      color: black;
+    }
+
+    & img {
+      height: inherit;
+      width: inherit;
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    padding-left: 12px;
+  }
+}
