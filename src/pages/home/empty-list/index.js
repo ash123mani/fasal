@@ -8,21 +8,15 @@ const EmptyList = () => {
     <Empty
       image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
       imageStyle={{
-        height: 60,
+        height: 80,
       }}
-      description={
-        <span>
-          Customize <a href="#API">Description</a>
-        </span>
-      }
+      description={<span>No Fasal data present</span>}
     >
-              <Link to="/add-fasal" style={{ color: "white" }}>
-
-      <Button type="primary" icon={<PlusOutlined />}>
-          {" "}
-          Create New
-     </Button>
-</Link>
+      <Link to="/add-fasal" style={{ color: "white" }}>
+        <Button type="primary" icon={<PlusOutlined />}>
+          Add a fasal
+        </Button>
+      </Link>
     </Empty>
   );
 };

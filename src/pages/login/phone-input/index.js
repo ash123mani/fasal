@@ -11,11 +11,30 @@ const PhoneInput = ({ setParentState }) => {
   const [phoneNum, setPhoneNum] = useState('')
   const [isSendingOtp, setIsSendingOtp] = useState(false)
 
+  const getOtp = () => {
+    setIsSendingOtp(true)
+
+    firebase.auth().signInWithPhoneNumber(`+91${phoneNum}`, window.recaptchaVerifier)
+      .then((confirmationResult) => {
+        window.confirmationResult = confirmationResult;
+        setIsSendingOtp(false)
+        setParentState({ screen: 'otp', phoneNum })
+      }).catch((error) => {
+        console.log("error", error)
+        setIsSendingOtp(false)
+        setParentState({ isError: true, errorMessage: 'Otp could not be sent' })
+        window.recaptchaVerifier.render().then(function(widgetId) {
+          window.grecaptcha.reset(widgetId);
+        })
+      });
+  }
+
   useEffect(() => {
     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
       'size': 'invisible',
       'callback': (response) => {
         console.log("Success")
+        // getOtp()
       },
       'expired-callback': () => {
         console.log("expired-callback")
@@ -28,24 +47,15 @@ const PhoneInput = ({ setParentState }) => {
   }
 
   const handlePhoneSubmit = () => {
-    setIsSendingOtp(true)
-    firebase.auth().signInWithPhoneNumber(`+91${phoneNum}`, window.recaptchaVerifier)
-      .then((confirmationResult) => {
-        console.log("confirmationResult", confirmationResult)
-        window.confirmationResult = confirmationResult;
-        setIsSendingOtp(false)
-        setParentState({ screen: 'otp', phoneNum })
-      }).catch((error) => {
-        setParentState({ isError: true, errorMessage: 'Otp cpould not be sent' })
-      });
+    getOtp()
   }
 
   return (
     <div className="phone-input">
       <div className="phone-input__title">
-        We will send otp,
-        <br />
-        entre Your Phone Number
+        {/* We will send otp,
+        <br /> */}
+        Your Phone Number
       </div>
       <Input
         size="large"
@@ -61,6 +71,7 @@ const PhoneInput = ({ setParentState }) => {
         onClick={handlePhoneSubmit}
         id="sign-in-button"
         loading={isSendingOtp}
+        disabled={phoneNum.length !== 10}
       >
         Enter
       </Button>

@@ -16,14 +16,19 @@ const OtpInput = ({ setParentState, phoneNum }) => {
   const handlePhoneSubmit = () => {
     setIsSubmitting(true)
     window.confirmationResult.confirm(otp).then((result) => {
+      setIsSubmitting(false)
+      const { additionalUserInfo: { isNewUser }} = result
       const user = result.user;
       const userId = user.uid;
-      setUserData(userId, {
-        phoneNum,
-        phoneCode: '+91',
-      })
+      if(isNewUser) {
+        setUserData(userId, {
+          phoneNum,
+          phoneCode: '+91',
+        })
+      }
     }).catch((error) => {
       console.log("error whle otp", error)
+      setIsSubmitting(false)
       setParentState({ isError: true, errorMessage: 'Entered Otp is wrong' })
     });
   }
@@ -31,9 +36,9 @@ const OtpInput = ({ setParentState, phoneNum }) => {
   return (
     <div className="phone-input">
       <div className="phone-input__title">
-        Otp has been sent,
+        Otp has been sent on {phoneNum},
         <br />
-        enter that otp
+        Please enter that otp
       </div>
       <Input
         size="large"

@@ -6,3 +6,9 @@
   width: 100%;
   flex-direction: column;
 }
+
+@media (min-width: 1024px) {
+  .home {
+    padding: 120px 36%;
+  }
+}

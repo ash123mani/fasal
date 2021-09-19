@@ -1,19 +1,53 @@
-import React, { Fragment } from "react";
+import React from "react";
 
-import EmptyList from './empty-list'
+import { getFasals } from "../../utils/firebaseUtils";
+import Loader from "../../components/loader";
 
-import './_style.scss'
-const arr = []
+import EmptyList from "./empty-list";
+import FasalList from "./fasal-list";
 
-const Home = () => {
-  return (
-    <Fragment>
-    <div className="home">
-      {!arr.length ? <EmptyList /> : <p>Will come soon</p>}
-    </div>
-    </Fragment>
+import "./_style.scss";
 
-  );
-};
+class Home extends React.Component {
+  state = {
+    fasals: [],
+    isLoading: false,
+  };
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+
+    getFasals()
+      .then((fasals) => {
+        this.setState({ fasals });
+        console.log("fasals", fasals)
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  }
+
+  render() {
+    const { fasals, isLoading } = this.state;
+
+    if (isLoading) {
+      return (
+        <div className="home">
+          <Loader />
+        </div>
+      );
+    }
+
+    if (!fasals.length) {
+      return (
+        <div className="home">
+          <EmptyList />
+        </div>
+      );
+    }
+
+    return <FasalList fasals={fasals} />;
+  }
+}
 
 export default Home;

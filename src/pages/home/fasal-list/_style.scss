@@ -1,0 +1,38 @@
+.fasal-list {
+  padding: 24px;
+
+  &__header {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #9fa9b387;
+    margin: 12px 0px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  &__name {
+    font-weight: bold;
+  }
+
+  &__table {
+    font-weight: bold;
+  }
+}
+
+.no-border {
+  border: none;
+  padding: 0px;
+}
+
+@media (min-width: 1024px) {
+  .fasal-list {
+    padding: 120px 20%;
+  }
+}

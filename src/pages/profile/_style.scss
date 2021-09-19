@@ -1,0 +1,30 @@
+.profile {
+  padding: 24px;
+
+  &__input {
+    margin-bottom: 16px;
+  }
+
+  &__label {
+    margin-top: 4px;
+  }
+
+  &__submit {
+    & .ant-btn {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile {
+    padding: 120px 20%;
+  }
+}
+
+.profile-loader {
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
