@@ -1,5 +1,9 @@
 require('dotenv').config()
 
+
+console.log("process.env.API_KEY,", process.env,)
+console.log("process.env.API_KEY,", process.env.API_KEY,)
+
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
