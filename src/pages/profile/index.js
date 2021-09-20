@@ -39,11 +39,11 @@ class Profile extends React.Component {
     const { uid } = userData;
     const sendData = {
       phoneNum: userData.phoneNum,
-      name: name || userData.name,
-      village: village || userData.village,
-      thana: thana || userData.thana,
-      post: post || userData.post,
-      district: district || userData.district,
+      name: name || userData.name || '',
+      village: village || userData.village || '',
+      thana: thana || userData.thana || '',
+      post: post || userData.post || '',
+      district: district || userData.district || '',
     }
     this.setState({ isUpdating: true });
     setUserData(uid, sendData).then(() => {
@@ -63,8 +63,9 @@ class Profile extends React.Component {
       )
     }
 
-    const { name, village, thana, post, district, phoneNum } = userData;
-    const showUpdateButton = !name || !village || !thana || !post || !district;
+    const { name, village, thana, district, phoneNum } = userData;
+    console.log("userData", userData)
+    const showUpdateButton = !name || !village || !thana || !district;
 
     return (
       <div className="profile">

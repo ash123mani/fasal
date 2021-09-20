@@ -4,12 +4,13 @@ const fireStoreDb = firebase.firestore()
 
 const setUserData = async (userId, data) => {
     const usersRef = fireStoreDb.collection('users').doc(userId)
+    const finalData = {
+      ...data,
+      updatedAt: new Date(),
+      uid: userId,
+    }
     try {
-      const result = await usersRef.set({
-        ...data,
-        updatedAt: new Date(),
-        uid: userId,
-      })
+      const result = await usersRef.set(finalData)
       return result
     } catch (err) {
       return err
@@ -66,7 +67,7 @@ const logOut = async () => {
   try {
     await firebase.auth().signOut()
   } catch (err) {
-    console.log("error", err)
+    console.log("error while logout", err)
   }
 }
 
