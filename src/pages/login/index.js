@@ -13,7 +13,7 @@ class Login extends React.Component {
     phoneNum: "",
     isError: "",
     errorMessage: "",
-    screen: "otp",
+    screen: "phone",
     userId: "",
   };
 

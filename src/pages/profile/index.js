@@ -28,7 +28,6 @@ class Profile extends React.Component {
     this.setState({ isLoading: true });
     getUserData()
       .then((res) => {
-        console.log("isLoading: false", res)
         this.setState({ userData: res, isLoading: false });
       })
       .finally(() => this.setState({ isLoading: false }));
@@ -46,7 +45,7 @@ class Profile extends React.Component {
     const { userData, isUpdating, isLoading } = this.state;
     const isFetching = isLoading;
 
-    if(!isFetching) {
+    if(isFetching) {
       return <Loader withOverlay />
     }
 
