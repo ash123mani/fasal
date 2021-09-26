@@ -1,32 +1,27 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from "react";
 
-import useProvideAuth from '../../hooks/useProvideAuth'
-import authContext from './context.js'
-import Loader from '../loader'
+import useProvideAuth from "../../hooks/useProvideAuth";
+import authContext from "./context.js";
+import Loader from "../loader";
 
-import './_style.scss'
+import "./_style.scss";
 
 const ProvideAuth = ({ children }) => {
-  const auth = useProvideAuth() || {}
+  const auth = useProvideAuth() || {};
 
-  const { isLoading } = auth
+  const { isLoading } = auth;
 
-  if(isLoading) {
+  if (isLoading) {
     return (
-        <Fragment>
-            <div className="base-loader">
-              <Loader />
-            </div>
-        </Fragment>
-    )
+      <Fragment>
+        <div className="base-loader">
+          <Loader />
+        </div>
+      </Fragment>
+    );
   }
-  
 
-  return (
-  <authContext.Provider value={auth}>
-    {children}
-  </authContext.Provider>
-  )
-}
+  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+};
 
-export default ProvideAuth
+export default ProvideAuth;

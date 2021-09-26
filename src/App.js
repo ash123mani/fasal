@@ -6,7 +6,7 @@ import ProvideAuth from "./components/provide-auth";
 import Header from "./components/header";
 import Loader from "./components/loader";
 
-import "./App.css";
+import "./_app.scss";
 
 const Login = lazy(() => import('./pages/login'));
 const Home = lazy(() => import('./pages/home'));
@@ -18,8 +18,9 @@ function App() {
   return (
     <ProvideAuth>
       <Router>
-        <div className="App">
+        <div className="app">
           <Header />
+          <div className="app__layout">
           <Suspense fallback={<Loader />}>
             <Switch>
               <PrivateRoute exact path="/">
@@ -39,6 +40,8 @@ function App() {
               </PrivateRoute>
             </Switch>
           </Suspense>
+          </div>
+
         </div>
       </Router>
     </ProvideAuth>

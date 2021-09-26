@@ -1,0 +1,35 @@
+.profile {
+  &__input {
+    margin-bottom: 16px;
+  }
+
+  &__label {
+    margin-top: 4px;
+    font-weight: bold;
+  }
+
+  &__submit {
+    & .ant-btn {
+      width: 100%;
+    }
+  }
+
+  &__gender {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    &-label {
+      margin-right: 16px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.profile-loader {
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

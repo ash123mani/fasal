@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
 import { addUserFasal } from "../../utils/firebaseUtils";
-import AddFasal from "../../components/add-fasal";
+import AddFasal from "../../components/add-fasal-new";
 
 const EditFasal = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,31 +12,8 @@ const EditFasal = () => {
   const { state } = location;
 
   const handleSubmit = (data) => {
-    const {
-      name,
-      area,
-      datePlanted,
-      firstProduceDate,
-      firstProduceQuantity,
-      secondProduceDate,
-      secondProduceQuantity,
-    } = data;
-
-    const sendData = {
-      name,
-      area,
-      datePlanted,
-      firstProduce: {
-        date: firstProduceDate,
-        quantity: firstProduceQuantity,
-      },
-      secondProduce: {
-        date: secondProduceDate,
-        quantity: secondProduceQuantity,
-      },
-    };
     setIsLoading(true)
-    addUserFasal(state.fasalId, sendData).then(() => {
+    addUserFasal(state.fasalId, data).then(() => {
       setIsLoading(false)
       history.push("/")
     })
@@ -45,7 +22,7 @@ const EditFasal = () => {
   return (
     <AddFasal
       handleSubmit={handleSubmit}
-      state={state}
+      fasal={state}
       isEditing
       isLoading={isLoading}
     />

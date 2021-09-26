@@ -1,3 +1,5 @@
+import pickBy from 'lodash/pickBy'
+
 function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = (Math.random() * 16) | 0,
@@ -6,6 +8,13 @@ function uuidv4() {
   })
 }
 
+const notEmpty = val => val === false || val === 0 || !!val
+
+const filterNil = obj => pickBy(obj, notEmpty)
+
+
 export {
-  uuidv4
+  uuidv4,
+  filterNil,
+  notEmpty,
 }

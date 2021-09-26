@@ -1,0 +1,36 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.anticon-minus-circle {
+  padding: 4px;
+}
+
+.anticon-minus-circle svg {
+  fill: red;
+}
+
+.datePlanted {
+  margin-left: 12px;
+}
+
+.ant-form-item {
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.ant-form-item .ant-form-item-label {
+  padding: 0px !important;
+}
+
+.ant-picker {
+  width: 100%;
+}
+
+.produce {
+  .ant-space-item:not(:last-of-type) {
+    flex: 1;
+  }
+}

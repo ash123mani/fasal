@@ -4,7 +4,8 @@ import { withRouter } from "react-router-dom";
 import { uuidv4 } from "../../utils/utils";
 import { addUserFasal } from "../../utils/firebaseUtils";
 
-import AddFasal from "../../components/add-fasal";
+import AddFasalNew from '../../components/add-fasal-new'
+import Loader from '../../components/loader'
 
 import "./_style.scss";
 
@@ -13,32 +14,10 @@ class AddNewFasal extends PureComponent {
     isLoading: false,
   };
 
-  handleSubmit = (data) => {
+  handleSubmit = (sendData) => {
     const fasalId = uuidv4();
-    const {
-      name,
-      area,
-      datePlanted,
-      firstProduceDate,
-      firstProduceQuantity,
-      secondProduceDate,
-      secondProduceQuantity,
-    } = data;
-
-    const sendData = {
-      name,
-      area,
-      datePlanted,
-      firstProduce: {
-        date: firstProduceDate,
-        quantity: firstProduceQuantity,
-      },
-      secondProduce: {
-        date: secondProduceDate,
-        quantity: secondProduceQuantity,
-      },
-    };
     this.setState({ isLoading: true });
+    console.log("sendData", sendData)
     addUserFasal(fasalId, sendData).then(() => {
       const { history } = this.props;
       this.setState({ isLoading: true });
@@ -49,7 +28,12 @@ class AddNewFasal extends PureComponent {
   render() {
     const { isLoading } = this.state;
 
-    return <AddFasal handleSubmit={this.handleSubmit} isLoading={isLoading} />;
+    return (
+      <React.Fragment>
+        <AddFasalNew handleSubmit={this.handleSubmit} isLoading={isLoading} />
+        {isLoading && <Loader withOverlay />}
+      </React.Fragment>
+    )
   }
 }
 

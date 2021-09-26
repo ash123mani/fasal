@@ -32,7 +32,7 @@ const getUserData = async () => {
 const addUserFasal = async (fasalId, data) => {
   const user = firebase.auth().currentUser
   const userId = user.uid
-  const userFasalRef = fireStoreDb.collection('fasalList').doc(userId).collection('fasal').doc(fasalId)
+  const userFasalRef = fireStoreDb.collection('allFasal').doc(userId).collection('fasal').doc(fasalId)
   console.log("final", data)
   data.uid = userId
   data.updatedAt = new Date()
@@ -53,7 +53,7 @@ const getFasals = async () => {
   const userId = user.uid
   let fasals = []
 
-  const doc =  await fireStoreDb.collection('fasalList').doc(userId).collection('fasal').get()
+  const doc =  await fireStoreDb.collection('allFasal').doc(userId).collection('fasal').get()
   doc.forEach((d) => {
     if(d.exists) {
       fasals.push(d.data())

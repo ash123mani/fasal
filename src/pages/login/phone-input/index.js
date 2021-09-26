@@ -34,7 +34,6 @@ const PhoneInput = ({ setParentState }) => {
       'size': 'invisible',
       'callback': (response) => {
         console.log("Success")
-        // getOtp()
       },
       'expired-callback': () => {
         console.log("expired-callback")

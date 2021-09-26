@@ -4,7 +4,7 @@ import { getFasals } from "../../utils/firebaseUtils";
 import Loader from "../../components/loader";
 
 import EmptyList from "./empty-list";
-import FasalList from "./fasal-list";
+import FasalListNew from "./fasal-list-new";
 
 import "./_style.scss";
 
@@ -46,7 +46,7 @@ class Home extends React.Component {
       );
     }
 
-    return <FasalList fasals={fasals} />;
+    return <FasalListNew fasals={fasals} />;
   }
 }
 

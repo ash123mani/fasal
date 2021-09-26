@@ -33,10 +33,12 @@ const OtpInput = ({ setParentState, phoneNum }) => {
     });
   }
 
+  const onEdit = () => setParentState({ screen: "phone" })
+
   return (
     <div className="phone-input">
       <div className="phone-input__title">
-        Otp has been sent on {phoneNum},
+        Otp has been sent on <span>{phoneNum}</span>,
         <br />
         Please enter that otp
       </div>
@@ -47,6 +49,7 @@ const OtpInput = ({ setParentState, phoneNum }) => {
         onChange={handleOtpChange}
         value={otp}
       />
+      <div className="phone-input__edit" onClick={onEdit}>Edit Phone Number</div>
       <Button
         size="large"
         type="primary"
